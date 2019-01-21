@@ -10,6 +10,7 @@ fi
 PLATFORM=$ANDROID_NDK/platforms/android-21/arch-arm
 
 cmake -DCMAKE_TOOLCHAIN_FILE=../android.toolchain.cmake                     \
+      -DCMAKE_MAKE_PROGRAM=/usr/bin/make                                    \
       -DCMAKE_BUILD_TYPE=Release                                            \
       -DANDROID_FORCE_ARM_BUILD=ON                                          \
       -DANDROID_NDK=${ANDROID_NDK}                                          \
