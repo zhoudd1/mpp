@@ -362,7 +362,7 @@ MPP_RET test_mpp_run(MpiEncTestData *p)
         void *buf = mpp_buffer_get_ptr(p->frm_buf);
 
         if (p->fp_input) {
-            ret = read_yuv_image(buf, p->fp_input, p->width, p->height,
+            ret = read_image(buf, p->fp_input, p->width, p->height,
                                  p->hor_stride, p->ver_stride, p->fmt);
             if (ret == MPP_NOK  || feof(p->fp_input)) {
                 mpp_log("found last frame. feof %d\n", feof(p->fp_input));
@@ -370,7 +370,7 @@ MPP_RET test_mpp_run(MpiEncTestData *p)
             } else if (ret == MPP_ERR_VALUE)
                 goto RET;
         } else {
-            ret = fill_yuv_image(buf, p->width, p->height, p->hor_stride,
+            ret = fill_image(buf, p->width, p->height, p->hor_stride,
                                  p->ver_stride, p->fmt, p->frame_count);
             if (ret)
                 goto RET;
@@ -516,6 +516,7 @@ static void mpi_enc_test_help()
     mpp_log("usage: mpi_enc_test [options]\n");
     show_options(mpi_enc_cmd);
     mpp_show_support_format();
+    mpp_show_color_format();
 }
 
 static RK_S32 mpi_enc_test_parse_options(int argc, char **argv, MpiEncTestCmd* cmd)
